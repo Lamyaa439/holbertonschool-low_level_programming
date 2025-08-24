@@ -1,3 +1,8 @@
+/*
+ * File: 4-puts.c
+ * Auth: Lamyaa Alghaihab < 11955@holbertonstudents.com>
+ */
+
 #include <stdio.h>
 
 /**
