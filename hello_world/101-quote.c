@@ -8,7 +8,11 @@
 
 int main(void)
 {
-fprintf(stderr, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n"); /* Error messages go to stderr */
+
+char str[] = "prints exactly and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+
+fwrite(str, sizeof(char), sizeof(str) - 1, stdout);
+fflush(stdout);
 
 return (1);
 }
