@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 /**
- * main - Entry point
- * Return: Always 1 (Success)
- */
+* main - Entry point
+* Return: Always
+**/
 int main(void)
 {
-write(2, "and that piece of art is useful
-		\" - Dora Korpar, 2015-10-19\n", 59);
+const char x[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
+write(2, x, strlen(x));
 return (1);
 }
