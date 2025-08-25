@@ -1,2 +1,2 @@
 #!/bin/bashi
-gcc -S $CFILE 
+gcc -S -masm=intel $CFILE 
