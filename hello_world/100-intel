@@ -1,0 +1,2 @@
+#!/bin/bashi
+gcc -s $CFILE -o main.s 
