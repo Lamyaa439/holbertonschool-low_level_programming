@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
-* main - prints the alphabet in lowercase.
+* main - prints _putchar, followed by a new line.
 *
 * Return: Always 0 (Success)
 */
