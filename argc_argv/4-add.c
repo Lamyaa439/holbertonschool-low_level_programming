@@ -13,8 +13,6 @@ int main(int argc, char *argv[])
 {
 	int num = 0, sum = 0, i, j;
 
-	if (argc == 1)
-		printf("0\n");
 	for (i = 1; i < argc; i++)
 	{
 		num = atoi(argv[i]);
