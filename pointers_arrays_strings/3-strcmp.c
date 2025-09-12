@@ -11,7 +11,7 @@
  **/
 int _strcmp(char *s1, char *s2)
 {
-	int i; 
+	int i, diff = 0;
 
 	while (s1[i] == s2[i])
 	{
@@ -20,5 +20,7 @@ int _strcmp(char *s1, char *s2)
 		i++;
 	}
 
-	return (s1[i] - s2[i]);
+	diff = s1[i] - s2[i];
+	printf("%d\n", diff);
+	return (0);
 }
