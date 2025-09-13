@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * leet - replace letters with numbers
- * @str: pointer to an array of words
+ * *leet - replace letters with numbers
+ * @s: pointer to an array of words
  *
  * Return: s
  */
