@@ -15,5 +15,6 @@ char *create_array(unsigned int size, char c)
 		return (NULL);
 	memset(str, c, size);
 	return (str);
+	free(str);
 
 }
