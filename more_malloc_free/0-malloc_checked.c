@@ -12,12 +12,11 @@
 void *malloc_checked(unsigned int b)
 {
 	void *arr = malloc(b);
-
+	
 	if (arr == NULL)
 	{
-		printf("Memory allocation failed.\n");
-		exit(98);
+		printf("An error occurred while determining the access rights of a file\n");
+		exit(0);
 	}
-
 	return (arr);
 }
