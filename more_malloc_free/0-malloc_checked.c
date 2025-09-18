@@ -3,14 +3,21 @@
 
 /**
  * *malloc_checked - allocates memory using malloc. 
- * @b: unsigned int
+ * @b: unsigned int.
  *
- * Return: void
+ * Return: a pointer to the allocated memory
  *
  **/
 
 void *malloc_checked(unsigned int b)
 {
-	
+	void *arr = malloc(b);
 
+	if (arr == NULL)
+	{
+		printf("Memory allocation failed.\n");
+		exit(98);
+	}
+
+	return (arr);
 }
