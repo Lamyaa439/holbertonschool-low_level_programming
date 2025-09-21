@@ -5,7 +5,8 @@
  * @name: pointer
  * @age: float
  * @owner: pointer
- * return: NULL if the function fails
+ * Return:a pointer to a new dog
+ * NULL if the function fails
  **/
 dog_t *new_dog(char *name, float age, char *owner)
 {
