@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "3-calc.h"
+#include <stdlib.h>
 
 /**
  * op_add - sum operater
@@ -42,16 +43,7 @@ int op_mul(int a, int b)
  **/
 int op_div(int a, int b)
 {
-	if (b != 0)
-	{
-		return (a / b);
-	}
-	else
-	{
-		printf("Error\n");
-		exit(100);
-
-	}
+	return (a / b);
 }
 /**
  * op_mod - remainder of the division of a by b
@@ -61,15 +53,7 @@ int op_div(int a, int b)
  **/
 int op_mod(int a, int b)
 {
-	if (b != 0)
-	{
-		return (a % b);
-	}
-	else
-	{
-		printf("Error\n");
-		exit(100);
-	}
+	return (a % b);
 }
 
 
