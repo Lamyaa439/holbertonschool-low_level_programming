@@ -12,19 +12,27 @@
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *new_node = (dlistint_t *)malloc(sizeof(dlistint_t));
-	dlistint_t *curr = head;
+	dlistint_t *curr = *h;
+	unsigned int i;
 
+	new_node->n = n;
+	new_node->prev = NULL;
+	new_node->next = NULL;
+	if (*h == NULL)
+	{
+		*h = new_node;
+	}
 	/*Insert at beginning*/
 	if (idx == 1)
 	{
-		new_node->next = head;
-		if (head != NULL)
-			head->prev = new_node;
-		head = new_node;
+		new_node->next = *h;
+		if (*h != NULL)
+			(*h)->prev = new_node;
+		*h = new_node;
 	}
 
 	/*Traverse the list to find the node before*/
-	for (int i = 1; i < idx - 1 && curr != NULL; ++i)
+	for (i = 1; i < idx - 1 && curr != NULL; ++i)
 		curr = curr->next;
 	/*if position is out of bounds*/
 	if (curr == NULL)
