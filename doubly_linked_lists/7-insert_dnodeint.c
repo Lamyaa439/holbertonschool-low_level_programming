@@ -24,15 +24,13 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		if (*h != NULL)
 			(*h)->prev = new_node;
 		*h = new_node;
-		return (*h);
 	}
 	/*step 3: Traverse the list to find the node before*/
-	for (i = 0; i < idx - 2 && curr != NULL; i++)
+	for (i = 0; i < idx - 1 && curr != NULL; i++)
 	{
 		if (curr == NULL)
 		{
 			free(new_node);
-			return (*h);
 		}
 		curr = curr->next;
 	}
