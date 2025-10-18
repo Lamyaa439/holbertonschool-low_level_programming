@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <stdio.h>
 /**
  * main - Copies content of file to another
  * @argc: int
