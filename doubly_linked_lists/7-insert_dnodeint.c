@@ -15,30 +15,41 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *curr = *h;
 	unsigned int i;
 
+	if (new_node == NULL)
+		return (NULL);
 	new_node->n = n;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	if (idx == 1)/*handle insertion at pos 1*/
+
+	if (idx == 0)
 	{
+		new_node->prev = NULL;
 		new_node->next = *h;
+
 		if (*h != NULL)
 			(*h)->prev = new_node;
 		*h = new_node;
+		return (new_node);
 	}
-	/*step 3: Traverse the list to find the node before*/
-	for (i = 0; i < idx - 1 && curr != NULL; i++)
+	while (curr != NULL && i < idx - 1)
 	{
-		if (curr == NULL)
-		{
-			free(new_node);
-		}
-		curr = curr->next;
+		curr =  curr->next;
+		i++;
 	}
-	new_node->prev = curr;
+	if (curr == NULL)
+	{
+		free(new_node);
+		return (NULL);
+	}
+	if (curr->next == NULL && i == idx - 1)
+	{
+		new_node->prev = curr;
+		new_node->next = NULL;
+		curr->next = new_node;
+		return (new_node);
+	}
 	new_node->next = curr->next;
-
-	if (new_node->next != NULL)
-		new_node->next->prev = new_node;
+	if (curr->next == NULL)
+		curr->next->prev = new_node;
+	new_node->prev = curr;
 	curr->next = new_node;
 	return (new_node);
 }
