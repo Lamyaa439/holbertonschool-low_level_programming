@@ -30,11 +30,6 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 	while ((filecheck = read(fd, buffer, 1024)) > 0)
 	{
-		if (filecheck == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-			exit(98);
-		}
 		filecheck = write(fd2, buffer, filecheck);
 		if (filecheck == -1)
 		{
