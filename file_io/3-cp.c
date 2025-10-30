@@ -1,21 +1,15 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "main.h"
+
 /**
- * main - Copies the content of a file to another file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
- * Return: 0 on success, or an exit code on failure (97-100).
+ * main - Copies content of file to another
+ * @argc: int
+ * @argv: double pointer
+ * Return: Copy of file
  */
 int main(int argc, char **argv)
 {
 	int fd, fd2, filecheck;
 	char buffer[1024];
-	ssize_t write_ret;
 
 	if (argc != 3)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
@@ -27,26 +21,23 @@ int main(int argc, char **argv)
 	}
 	fd2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
-	{
-		close(fd);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 	while ((filecheck = read(fd, buffer, 1024)) > 0)
 	{
-		write_ret = write(fd2, buffer, filecheck);
-		if (write_ret == -1 || write_ret != filecheck)
+		if (filecheck == -1)
 		{
-			close(fd);
-			close(fd2);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			exit(98);
+		}
+		filecheck = write(fd2, buffer, filecheck);
+		if (filecheck == -1)
+		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
 	}
 	if (filecheck == -1)
 	{
-		close(fd);
-		close(fd2);
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
@@ -54,5 +45,6 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd), exit(100);
 	if (close(fd2) == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2), exit(100);
+
 	return (0);
 }
