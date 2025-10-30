@@ -1,28 +1,24 @@
-#include "main.h"
-#include <unistd.h>
-#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 /**
- * main - Copies content of file to another
- * @argc: int
- * @argv: double pointer
- * Return: Copy of file
+ * main - Copies the content of a file to another file.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ * Return: 0 on success, or an exit code on failure (97-100).
  */
-
 int main(int argc, char **argv)
 {
 	int fd, fd2, filecheck;
 	char buffer[1024];
+	ssize_t write_ret;
 
 	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
@@ -38,8 +34,7 @@ int main(int argc, char **argv)
 	}
 	while ((filecheck = read(fd, buffer, 1024)) > 0)
 	{
-		ssize_t write_ret = write(fd2, buffer, filecheck);
-
+		write_ret = write(fd2, buffer, filecheck);
 		if (write_ret == -1 || write_ret != filecheck)
 		{
 			close(fd);
@@ -59,6 +54,5 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd), exit(100);
 	if (close(fd2) == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2), exit(100);
-
 	return (0);
 }
