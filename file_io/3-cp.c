@@ -45,6 +45,8 @@ int main(int argc, char **argv)
 	if (filecheck == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		close(fd);
+		close(fd2);
 		exit(98);
 	}
 	if (close(fd) == -1)
